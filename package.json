@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "Just Like That team",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
