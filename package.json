@@ -7,7 +7,7 @@
     "start": "node src/main.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Just Like That team",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0"
