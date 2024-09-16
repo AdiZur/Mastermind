@@ -1,4 +1,3 @@
-const { OPTIONS } = require('../src/consts')
 
 function printColors(colors) {
     colors.forEach((color, index) => {
@@ -6,4 +5,4 @@ function printColors(colors) {
     });
 }
 
-printColors(OPTIONS)
+module.exports.printColors = printColors
