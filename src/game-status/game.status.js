@@ -18,7 +18,7 @@ module.exports.getGameStatus = (
 ) => {
   const currentStatus = winStatus(chosenUserBoard, computerBoard);
   if (
-    currentStatus.status == GAME_STATUS.RESUME &&
+    currentStatus.status === GAME_STATUS.RESUME &&
     loseStatus(optionsUsed, MAX_CHANCES)
   ) {
     currentStatus.status = GAME_STATUS.LOSE;

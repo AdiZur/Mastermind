@@ -6,5 +6,5 @@
  */
 module.exports.loseStatus = (optionsUsed, totalOptions) => {
   const reduceOptions = totalOptions - optionsUsed;
-  return reduceOptions == 0;
+  return reduceOptions === 0;
 };

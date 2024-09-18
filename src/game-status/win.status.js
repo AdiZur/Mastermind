@@ -26,7 +26,7 @@ module.exports.winStatus = (chosenUserBoard, computerBoard) => {
     }
   );
 
-  if (compareBoardsColorsData.bullseye == computerBoard.length)
+  if (compareBoardsColorsData.bullseye === computerBoard.length)
     return {
       status: GAME_STATUS.WIN,
       data: compareBoardsColorsData,
