@@ -21,3 +21,10 @@ module.exports.isArrayOfStrings = (arr) => {
   if (!this.isArray(arr)) return false;
   return arr.every((val) => this.isString(val));
 };
+
+/**
+ * the function gets an input and checks if it is a type of a number and returns boolean
+ * @param {number} num
+ * @returns {boolean}
+ */
+module.exports.isNumber = (num) => typeof num === "number";

@@ -2,6 +2,7 @@ const {
   isString,
   isArray,
   isArrayOfStrings,
+  isNumber,
 } = require("../utils/validation.utils");
 
 describe("testing validation functions", () => {
@@ -32,5 +33,15 @@ describe("testing validation functions", () => {
     ["[]", false],
   ])(`test isArrayOfStrings(%s) function to return %s`, (input, bool) => {
     expect(isArrayOfStrings(input)).toBe(bool);
+  });
+
+  test.each([
+    [["hello", "weff"], false],
+    ["436", false],
+    [[{}, "arr"], false],
+    [5765, true],
+    ["[]", false],
+  ])(`test isNumber(%s) function to return %s`, (input, bool) => {
+    expect(isNumber(input)).toBe(bool);
   });
 });

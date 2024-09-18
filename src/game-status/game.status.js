@@ -1,5 +1,5 @@
 const { MAX_CHANCES, GAME_STATUS } = require("../consts");
-const { isArrayOfStrings } = require("../utils/validation.utils");
+const { isArrayOfStrings, isNumber } = require("../utils/validation.utils");
 const { loseStatus } = require("./lose.status");
 const { winStatus } = require("./win.status");
 
@@ -20,7 +20,7 @@ module.exports.getGameStatus = (
   if (
     !isArrayOfStrings(chosenUserBoard) ||
     !isArrayOfStrings(com) ||
-    typeof optionsUsed !== "number"
+    isNumber(optionsUsed)
   ) {
     return null;
   }
