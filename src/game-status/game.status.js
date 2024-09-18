@@ -1,4 +1,5 @@
 const { MAX_CHANCES, GAME_STATUS } = require("../consts");
+const { isArrayOfStrings } = require("../utils/validation.utils");
 const { loseStatus } = require("./lose.status");
 const { winStatus } = require("./win.status");
 
@@ -8,7 +9,7 @@ const { winStatus } = require("./win.status");
  * @param {number} optionsUsed
  * @param {[string]} chosenUserBoard
  * @param {[string]} computerBoard
- * @returns {{ status:number, data: { hit:number, bullseye:number } }}
+ * @returns {{ status:number, data: { hit:number, bullseye:number } }| null}
  */
 
 module.exports.getGameStatus = (
@@ -16,6 +17,13 @@ module.exports.getGameStatus = (
   chosenUserBoard,
   computerBoard
 ) => {
+  if (
+    !isArrayOfStrings(chosenUserBoard) ||
+    !isArrayOfStrings(com) ||
+    typeof optionsUsed !== "number"
+  ) {
+    return null;
+  }
   const currentStatus = winStatus(chosenUserBoard, computerBoard);
   if (
     currentStatus.status === GAME_STATUS.RESUME &&
