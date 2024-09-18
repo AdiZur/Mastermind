@@ -10,7 +10,8 @@
 const {OPTIONS_TO_GUESS, COLORS_OPTIONS: colorOptions} = require('consts');
 
 /**
- * the function use array of string - colorOptions and return random array of new options
+ * the function use array of string - colorOptions and
+ * return random array of new options that the user need to guess.
  * @return {string[]} colorsToGuess
  */
 module.exports = function getColorsToGuess() {
