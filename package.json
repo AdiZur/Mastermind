@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/main.js"
+    "start": "node src/main.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Just Like That team",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
-    "jest-html-reporters": "^3.1.7"
+    "jest-html-reporters": "^3.1.7",
+    "prettier": "^3.3.3"
   }
 }
