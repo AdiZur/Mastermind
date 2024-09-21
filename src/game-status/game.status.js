@@ -19,7 +19,7 @@ module.exports.getGameStatus = (
 ) => {
   if (
     !isArrayOfStrings(chosenUserBoard) ||
-    !isArrayOfStrings(com) ||
+    !isArrayOfStrings(computerBoard) ||
     isNumber(optionsUsed)
   ) {
     return null;
