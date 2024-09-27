@@ -14,7 +14,7 @@ module.exports.isArray = (arr) => Array.isArray(arr);
 
 /**
  * the function gets an input and check if it is an array of strings and returns boolean
- * @param {[string]} arr
+ * @param {string[]} arr
  * @returns {boolean}
  */
 module.exports.isArrayOfStrings = (arr) => {
@@ -28,3 +28,19 @@ module.exports.isArrayOfStrings = (arr) => {
  * @returns {boolean}
  */
 module.exports.isNumber = (num) => typeof num === "number";
+
+/**
+ *
+ * @param {any[]} args
+ * @param {CallableFunction} validFunction
+ * @returns
+ */
+module.exports.patternValidation = (args, validFunction) => {
+  if (!this.isArray(args)) return false;
+
+  for (let index = 0; index < args.length; index++) {
+    if (!validFunction(args[index])) return false;
+  }
+
+  return true;
+};

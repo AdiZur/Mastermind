@@ -16,7 +16,7 @@ module.exports.winStatus = (chosenUserBoard, computerBoard) => {
       // if not, check if color exists in the user board
       let addHit =
         addBullsEye !== 0 ? 0 : chosenUserBoard.includes(color) ? 1 : 0;
-      obj.hit += obj.hit + addHit;
+      obj.hit = obj.hit + addHit;
       obj.bullseye = obj.bullseye + addBullsEye;
       return obj;
     },

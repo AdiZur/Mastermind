@@ -3,6 +3,7 @@ const {
   isArray,
   isArrayOfStrings,
   isNumber,
+  patternValidation,
 } = require("../utils/validation.utils");
 
 describe("testing validation functions", () => {
@@ -43,5 +44,32 @@ describe("testing validation functions", () => {
     ["[]", false],
   ])(`test isNumber(%s) function to return %s`, (input, bool) => {
     expect(isNumber(input)).toBe(bool);
+  });
+
+  test.each([
+    [
+      [
+        ["hello", "weff"],
+        ["john", "cena"],
+      ],
+      isArrayOfStrings,
+      true,
+    ],
+    [[436, 8934], isNumber, true],
+    [[[]], isArray, true],
+    [["red", "green", "blue"], isString, true],
+    [
+      [
+        ["hello", "weff"],
+        ["john", false],
+      ],
+      isArrayOfStrings,
+      false,
+    ],
+    [[436, "8934"], isNumber, false],
+    [[435], isArray, false],
+    [[{}, false], isString, false],
+  ])(`test patternValidation(%s,%s) return %s`, (input, func, bool) => {
+    expect(patternValidation(input, func)).toBe(bool);
   });
 });
