@@ -1,4 +1,4 @@
-module.exports.COLORS_OPTIONS = ['Red', 'Yellow', 'Blue', 'Green', 'Black', 'White'];
+module.exports.ALLOWED_OPTIONS = "0123456".split("");
 
 module.exports.MAX_CHANCES = 10;
 

@@ -2,7 +2,7 @@
   "name": "mastermind",
   "version": "1.0.0",
   "HEADdescription": "",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
     "test": "jest"
@@ -16,6 +16,8 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
+    "draftlog": "^1.0.13",
+    "log-update": "^6.1.0",
     "prompt-sync": "^4.2.0"
   }
 }

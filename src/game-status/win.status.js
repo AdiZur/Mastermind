@@ -6,33 +6,42 @@ const { GAME_STATUS } = require("../consts");
  * @param {[string]} computerBoard
  * @returns {{ status:number, data:null | { hit:number, bullseye:number } }}
  */
-module.exports.winStatus = (chosenUserBoard, computerBoard) => {
-  //reduce function that checks computer board color in current index and returns data object
-  const compareBoardsColorsData = computerBoard.reduce(
-    (obj, color, index) => {
-      let addBullsEye = chosenUserBoard[index] == color ? 1 : 0;
-      // trinary quiestion:
-      // if there was a bullseye between guess board and user board in current index - hit is not added
-      // if not, check if color exists in the user board
-      let addHit =
-        addBullsEye !== 0 ? 0 : chosenUserBoard.includes(color) ? 1 : 0;
-      obj.hit += obj.hit + addHit;
-      obj.bullseye = obj.bullseye + addBullsEye;
-      return obj;
-    },
-    {
-      hit: 0,
-      bullseye: 0,
-    }
-  );
+module.exports.winStatus = (_userOptions, _computerOption) => {
+  // reduce function that checks computer board color in current index and returns data object
+  let hit = 0;
+  let bullseye = 0;
 
-  if (compareBoardsColorsData.bullseye === computerBoard.length)
-    return {
-      status: GAME_STATUS.WIN,
-      data: compareBoardsColorsData,
-    };
-  return {
-    status: GAME_STATUS.RESUME,
-    data: compareBoardsColorsData,
-  };
+  const userOptions = _userOptions.slice(0);
+  const computerOption = _computerOption.slice(0);
+
+  // Check for bullseye and remove if exists
+  let i = userOptions.length;
+  while (i--) {
+    const userItem = userOptions[i];
+    const computerItem = computerOption[i];
+
+    if (userItem === computerItem) {
+      userOptions.splice(i, 1);
+      computerOption.splice(i, 1);
+      bullseye++;
+    }
+  }
+
+  // Check for hits and remove if exists
+  i = userOptions.length;
+  while (i--) {
+    const userItem = userOptions[i];
+    const isExistsIndex = computerOption.indexOf(userItem);
+
+    if (isExistsIndex >= 0) {
+      computerOption.splice(isExistsIndex, 1);
+      hit++;
+    }
+  }
+
+  const data = { hit, bullseye };
+
+  return bullseye === _computerOption.length
+    ? { status: GAME_STATUS.WIN, data }
+    : { status: GAME_STATUS.RESUME, data };
 };
