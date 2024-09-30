@@ -3,25 +3,23 @@
  * and to convert user input from a string to an array of colors.
  *
  * Functions:
- * - getColorsToGuess: Generates a random array of colors to guess.
+ * - getRandomOptions: Generates a random array of colors to guess.
  * - convertUserGuessToArray: Converts user input from a string to an array of colors.
  */
 
-const {
-  COLORS_OPTIONS: colorOptions,
-  MAX_CHANCES,
-  OPTIONS_TO_GUESS,
-} = require('./consts');
+const { ALLOWED_OPTIONS, MAX_CHANCES, OPTIONS_TO_GUESS } = require("./consts");
 
 /**
- * the function use array of string - colorOptions and
+ * the function use array of string - ALLOWED_OPTIONS and
  * return random array of new options that the user need to guess.
  * @return {string[]} colorsToGuess
  */
-module.exports.getColorsToGuess = function () {
+module.exports.getRandomOptions = function () {
   return new Array(OPTIONS_TO_GUESS)
     .fill(0)
-    .map(() => colorOptions[Math.floor(Math.random() * colorOptions.length)]);
+    .map(
+      () => ALLOWED_OPTIONS[Math.floor(Math.random() * ALLOWED_OPTIONS.length)],
+    );
 };
 
 /**
@@ -30,7 +28,7 @@ module.exports.getColorsToGuess = function () {
  * @return {string[]} colorsToGuess
  */
 module.exports.convertUserGuessToArray = function (userInput) {
-  const numbersInput = removeRedundantSpaces(userInput).split(' ');
+  const numbersInput = removeRedundantSpaces(userInput).split(" ");
   const validInput = validateUserGuess(numbersInput);
 
   return validInput ? mapUserInputToColors(numbersInput) : null;
@@ -41,7 +39,7 @@ module.exports.convertUserGuessToArray = function (userInput) {
  * @return {string} fixUserInput
  */
 function removeRedundantSpaces(userInput) {
-  return userInput.trim().replace(/\s+/g, ' ');
+  return userInput.trim().replace(/\s+/g, " ");
 }
 
 /**
@@ -53,7 +51,7 @@ function validateUserGuess(numbersInput) {
   return (
     numbersInput.length === OPTIONS_TO_GUESS &&
     numbersInput.every(
-      (num) => !Number.isNaN(num) && 0 <= num && num < colorOptions.length
+      (num) => !Number.isNaN(num) && 0 <= num && num < ALLOWED_OPTIONS.length,
     )
   );
 }
@@ -63,5 +61,5 @@ function validateUserGuess(numbersInput) {
  * @return {string[]} fixUserInputArray
  */
 function mapUserInputToColors(userInput) {
-  return userInput.map((num) => colorOptions[parseInt(num)]);
+  return userInput.map((num) => ALLOWED_OPTIONS[parseInt(num)]);
 }
